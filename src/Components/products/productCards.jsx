@@ -2,6 +2,14 @@ import { Box, Button, Card, Grid, Rating, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+// import required modules
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 const ProductCard = () => {
   const [products, setProducts] = useState();
@@ -9,7 +17,13 @@ const ProductCard = () => {
   useEffect(() => {
     const productData = axios
       .get("https://api.escuelajs.co/api/v1/products")
-      .then((data) => setProducts(data.data));
+      .then((data) => {
+        const filterProduct = data.data.filter(
+          (products) => products?.title !== "New product"
+        );
+        console.log(filterProduct, "filterDeta")
+        setProducts(data.data);
+      });
   }, []);
 
   return (
@@ -18,8 +32,30 @@ const ProductCard = () => {
         return (
           <Grid item sm={3}>
             <Card className="p-2">
-              <img className="img-fluid" src={porduct?.images[0]} alt="" />
+              <Swiper
+                spaceBetween={30}
+                centeredSlides={true}
+                autoplay={{
+                  delay: 4500,
+                  disableOnInteraction: false,
+                }}
+                pagination={{
+                  clickable: true,
+                }}
+                navigation={false}
+                modules={[Autoplay, Pagination, Navigation]}
+                className="mySwiper"
+              >
+                {porduct?.images?.map((img) => {
+                  return (
+                    <SwiperSlide>
+                      <img className="img-fluid" src={img} alt="" />
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
               <Typography variant="body2">{porduct?.category?.name}</Typography>
+
               <h6>{porduct?.title}</h6>
               <Rating
                 size="small"

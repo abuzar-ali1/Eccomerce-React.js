@@ -13,59 +13,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import product1 from "./imges/product-img-1.jpg";
-import product2 from "./imges/product-img-2.jpg";
-import product3 from "./imges/product-img-3.jpg";
-import product4 from "./imges/product-img-4.jpg";
-import product5 from "./imges/product-img-5.jpg";
-
-import ProductCard from "../products/productCards";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Menu, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
+import ProductCard from "../products/productCards";
 
-const product = [
-  {
-    id: 1,
-    name: "Haldiram's Sev Bhujia",
-    category: "Snack & Munchies",
-    img: product1,
-    price: "$18",
-    rating: 3,
-  },
-  {
-    id: 2,
-    name: "NutriChoice Digestive",
-    category: "Snack & Munchies",
-    img: product2,
-    price: "$24",
-    rating: 4,
-  },
-  {
-    id: 3,
-    name: "Cadbury 5 Star Chocolate",
-    category: "Snack & Munchies",
-    img: product3,
-    price: "$32",
-    rating: 5,
-  },
-  {
-    id: 4,
-    name: "Onion Flavour Potato",
-    category: "Snack & Munchies",
-    img: product4,
-    price: "$3",
-    rating: 3,
-  },
-  {
-    id: 3,
-    name: "Salted Instant Popcorn",
-    category: "Instant Food",
-    img: product5,
-    price: "$13",
-    rating: 5,
-  },
-];
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact"];
 
@@ -184,7 +136,7 @@ function Appbar(props) {
       <Box component="main" sx={{ p: 1 }}>
         <Toolbar />
         {/* Products list */}
-        <ProductCard product={product} />
+        <ProductCard />
       </Box>
     </Box>
   );
